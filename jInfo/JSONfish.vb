@@ -47,10 +47,11 @@ Public Class JSONfish
     End Function
 
     ''' <summary>
-    ''' Desrializes a given JSON/string object into a "real" object
+    ''' Deserializes a given JSON/string object into a "real" object
     ''' </summary>
     ''' <param name="content">the string with JSON</param>
-    ''' <returns>a real object</returns>
+    ''' <param name="var">the object to store the JSON in</param>
+    ''' <returns>true, if succeeds</returns>
     ''' <remarks></remarks>
     Public Shared Function Deserialize(content As String, ByRef var As Object) As Boolean
         Try
@@ -65,10 +66,10 @@ Public Class JSONfish
     End Function
 
     ''' <summary>
-    ''' Desrializes a given JSON/string object into a "real" object
+    ''' Serializes a given object to a JSON/string object
     ''' </summary>
     ''' <param name="var">the object to serialize</param>
-    ''' <returns>a real object</returns>
+    ''' <returns>the JSON string</returns>
     ''' <remarks></remarks>
     Public Shared Function Serialize(ByRef var As Object) As String
         Try
