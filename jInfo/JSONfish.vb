@@ -1,6 +1,6 @@
 ﻿Imports System.Net
 Imports System.IO
-Imports System.Runtime.Serialization
+Imports System.Web.Script.Serialization
 
 Public Class JSONfish
     Private Shared m_LastError As New Dictionary(Of DateTime, Exception)
@@ -52,18 +52,32 @@ Public Class JSONfish
     ''' <param name="content">the string with JSON</param>
     ''' <returns>a real object</returns>
     ''' <remarks></remarks>
-    Public Shared Function DeserializeJSON(content As String, ByRef var As Object) As Boolean
+    Public Shared Function Deserialize(content As String, ByRef var As Object) As Boolean
         Try
-            Dim ms As New MemoryStream(System.Text.Encoding.Unicode.GetBytes(content))
-            Dim serializer As New Json.DataContractJsonSerializer(var.GetType())
+            Dim serializer As New JavaScriptSerializer()
 
-            var = serializer.ReadObject(ms)
-            ms.Dispose()
-
+            var = serializer.Deserialize(content, var.GetType)
             Return True
         Catch ex As Exception
             m_LastError.Add(Now, ex)
             Return False
+        End Try
+    End Function
+
+    ''' <summary>
+    ''' Desrializes a given JSON/string object into a "real" object
+    ''' </summary>
+    ''' <param name="var">the object to serialize</param>
+    ''' <returns>a real object</returns>
+    ''' <remarks></remarks>
+    Public Shared Function Serialize(ByRef var As Object) As String
+        Try
+            Dim serializer As New JavaScriptSerializer()
+
+            Return serializer.Serialize(var)
+        Catch ex As Exception
+            m_LastError.Add(Now, ex)
+            Return String.Empty
         End Try
     End Function
 
@@ -74,6 +88,6 @@ Public Class JSONfish
     ''' <returns>a deserialized object</returns>
     ''' <remarks></remarks>
     Public Shared Function RequestJsonObject(page As String, ByRef var As Object) As Boolean
-        Return DeserializeJSON(DownloadJSON(page), var)
+        Return Deserialize(DownloadJSON(page), var)
     End Function
 End Class
