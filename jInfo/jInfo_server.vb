@@ -5,13 +5,15 @@ Imports System.Threading
 
 Module jInfo_server
     Dim server_socket As TcpListener
+    Dim port As Integer = 8989
 
     ''' <summary>
     ''' Main Method
     ''' </summary>
     Sub Main()
         ' initialize listener
-        server_socket = New TcpListener(8989)
+        server_socket = New TcpListener(port)
+        Log("Started listening on Port " & port)
 
         ' start listening
         server_socket.Start(10)
@@ -52,6 +54,17 @@ Module jInfo_server
             writer.Dispose()
             client.Close()
         End If
+    End Sub
+
+    ''' <summary>
+    ''' logs to the stdout
+    ''' </summary>
+    ''' <param name="text">the text to print</param>
+    Sub Log(ByVal text As String)
+        ' reformat
+        text = "[" & FormatDateTime(Now, DateFormat.ShortDate) & " " & FormatDateTime(Now, DateFormat.LongTime) & "]" & vbTab & text
+
+        Console.WriteLine(text)
     End Sub
 
 End Module
