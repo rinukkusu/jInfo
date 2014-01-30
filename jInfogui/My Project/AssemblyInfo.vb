@@ -8,17 +8,17 @@ Imports System.Runtime.InteropServices
 
 ' Die Werte der Assemblyattribute überprüfen
 
-<Assembly: AssemblyTitle("jInfod")> 
-<Assembly: AssemblyDescription("information server")> 
+<Assembly: AssemblyTitle("jInfogui")> 
+<Assembly: AssemblyDescription("jInfo client with GUI")> 
 <Assembly: AssemblyCompany("CodingCafe")> 
-<Assembly: AssemblyProduct("jInfod")> 
+<Assembly: AssemblyProduct("jInfogui")> 
 <Assembly: AssemblyCopyright("© CodingCafe 2014")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
 
 'Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
-<Assembly: Guid("de531d3b-74c4-40e1-958c-ba7f8d8a420c")> 
+<Assembly: Guid("c13db826-5c20-4fc7-b69f-d0da07f68a0f")> 
 
 ' Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 '

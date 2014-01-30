@@ -75,6 +75,11 @@ Module jInfo_server
         End If
     End Sub
 
+    ''' <summary>
+    ''' get the endpoint in the format of "IP:PORT"
+    ''' </summary>
+    ''' <param name="ep">reference to the endpoint variable</param>
+    ''' <returns>a formatted string</returns>
     Function GetEndpointString(ByRef ep As IPEndPoint)
         Return ep.Address.ToString & ":" & ep.Port.ToString
     End Function
